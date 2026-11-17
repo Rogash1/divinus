@@ -803,6 +803,10 @@ int v4l2_video_snapshot_grab(char index, char quality, hal_jpegdata *jpeg)
             jpeg->length = jpeg->jpegSize = _v4l2_snapSize;
             ret = EXIT_SUCCESS;
         }
+    } else if (_v4l2_snapReq == request) {
+        /* Give up the request, or every later frame keeps trying it */
+        _v4l2_snapDone = request;
+        _v4l2_snapSize = 0;
     }
     pthread_mutex_unlock(&_v4l2_snapLock);
 
