@@ -22,7 +22,9 @@ int (*v4l2_vid_cb)(char, hal_vidstream*);
 #include <unistd.h>
 
 #define V4L2_CHN_NUM 4
-#define V4L2_BUF_NUM 4
+/* Three NV12 frames: the FH8626 minimum. At 1080p a fourth does not fit
+   the media CMA beside an H.264 and a JPEG encoder. */
+#define V4L2_BUF_NUM 3
 #define V4L2_OSD_NUM 32
 #define V4L2_DEV_NUM 64
 #define V4L2_WAIT_MS 2000
